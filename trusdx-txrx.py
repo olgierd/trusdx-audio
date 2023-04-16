@@ -1,20 +1,19 @@
 #!/usr/bin/env python3
+# de SQ3SWF 2023
 
 import pyaudio
 import serial
 import threading
 import time
 
-ser = serial.Serial("/dev/ttyUSB0", 115200)
-out_stream = pyaudio.PyAudio().open(format = pyaudio.paInt8, channels = 1, rate = 7820, output = True)
-in_stream = pyaudio.PyAudio().open(format = pyaudio.paUInt8, channels = 1, rate = 11525, input = True)
+## change these (if you need to)
+audio_tx_rate = 11525
+audio_rx_rate = 7820
+## 
 
 
-time.sleep(3)
-ser.write(b"UA1;") # enable audio streaming
-
-buf = []
-urs = [0]
+buf = []    # buffer for received audio
+urs = [0]   # underrun counter
 tx_status = [False]
 
 def receive_serial_audio(serport):
@@ -52,12 +51,26 @@ def transmit_audio_via_serial(pastream, serport):
             print("TX OFF")
 
 
-threading.Thread(target=receive_serial_audio, args=(ser,)).start()
-threading.Thread(target=play_receive_audio, args=(out_stream,)).start()
-threading.Thread(target=transmit_audio_via_serial, args=(in_stream,ser)).start()
 
-ts = time.time()
 
-while 1:
-    print(f"{int(time.time()-ts)} BUF: {len(buf)}")
-    time.sleep(10)
+def main():
+    in_stream = pyaudio.PyAudio().open(format = pyaudio.paUInt8, channels = 1, rate = audio_tx_rate, input = True)
+    out_stream = pyaudio.PyAudio().open(format = pyaudio.paInt8, channels = 1, rate = audio_rx_rate, output = True)
+    ser = serial.Serial("/dev/ttyUSB0", 115200)
+
+    time.sleep(3) # wait for device to start after opening serial port
+    ser.write(b"UA1;") # enable audio streaming
+
+    threading.Thread(target=receive_serial_audio, args=(ser,)).start()
+    threading.Thread(target=play_receive_audio, args=(out_stream,)).start()
+    threading.Thread(target=transmit_audio_via_serial, args=(in_stream,ser)).start()
+
+    # display some stats every 10 seconds
+    ts = time.time()
+    while 1:
+        print(f"{int(time.time()-ts)} BUF: {len(buf)}")
+        time.sleep(10)
+
+
+if __name__ == '__main__':
+    main()
