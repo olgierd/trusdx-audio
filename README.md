@@ -2,7 +2,7 @@
 
 Script in this repository allows you to send and receive audio to/from your (tr)uSDX (https://dl2man.de/) transceiver.
 
-It enables operating digital modes using nothing but a laptop, (tr)uSDX and, obviously, an antenna - with limited power (<0.5 W) if no external 12 V supply is connected, but that should be plenty for weak signal modes.
+It enables operating in digital modes using nothing but a laptop, (tr)uSDX and, obviously, an antenna - with limited power (<0.5 W) if no external 12 V supply is connected, but that should be plenty for weak signal modes. No external audio interface is needed.
 
 It has been battle tested with FT8 and successfuly produced a signal on pskreporter (85 RX reports, including `W` and `VK`), as well as completed two QSOs.
 
@@ -40,6 +40,8 @@ You'll need a Linux PC (Raspberry PI should be fine, too) with PulseAudio, Pytho
 ## Bugs, issues
 
 Since the (tr)uSDX firmware is alpha, I have experienced a few hangs (where the rig did not go back from TX into receive) and occasional restarts. Not sure if they were related to the PC code or rather the firmware itself.
+
+Audio underruns may occur and quality may be worse than with a "regular" jack-jack audio interface.
 
 Keep in mind it's all experimental, no warranty or service included and your beloved QRP rig may go boom-boom - I suggest playing with USB-only power instead of full 12 V. It's enough power for digital modes anyway and much less violent on the finals.
 
