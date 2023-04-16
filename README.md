@@ -35,6 +35,7 @@ You'll need a Linux PC (Raspberry PI should be fine, too) with PulseAudio, Pytho
 * Run the script in terminal: `trusdx-txrx.py`.
 * Use `pavucontrol` to assign the newly created `TRUSDX` audio device to the application you'd like to use for transmitting and receiving (or do that from the application itself, if it includes audio settings - WSJT-X does).
 * TX/RX switching is performed automatically by a simple VOX - when audio samples captured from the application contain no audio, the rig is set into receive mode.
+* Important - make sure the transmitted signal looks good using a 2nd receiver. Well, I mean, reasonably good - not worse than "regular" signal produced by (tr)uSDX. Adjust the audio level in `pavucontrol`. Too high level of TX audio will create a total mess. Too low, the rig won't transmit anything or will transmit less than it is able to.
 
 ## Bugs, issues
 
