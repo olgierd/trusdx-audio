@@ -2,7 +2,7 @@
 
 Script in this repository allows you to send and receive audio to/from your (tr)uSDX (https://dl2man.de/) transceiver.
 
-It enables operating digital modes using nothing but a laptop, (tr)uSDX and, obviously, an antenna - with limited power (<0.5 W), but that should be plenty for weak signal modes.
+It enables operating digital modes using nothing but a laptop, (tr)uSDX and, obviously, an antenna - with limited power (<0.5 W) if no external 12 V supply is connected, but that should be plenty for weak signal modes.
 
 It has been battle tested with FT8 and successfuly produced a signal on pskreporter (85 RX reports, including `W` and `VK`), as well as completed two QSOs.
 
