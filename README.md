@@ -1,6 +1,6 @@
 # trusdx-audio
 
-Script in this repository allows you to send and receive audio to/from your (tr)uSDX (https://dl2man.de/) transceiver.
+Script in this repository allows you to send and receive audio to/from your (tr)uSDX (https://dl2man.de/) transceiver via the USB port (built-in USB-Serial).
 
 It enables operating in digital modes using nothing but a laptop, (tr)uSDX and, obviously, an antenna - with limited power (<0.5 W) if no external 12 V supply is connected, but that should be plenty for weak signal modes. No external audio interface is needed.
 
